@@ -1,0 +1,36 @@
+<section>
+  <div class="container-fluid p-5">
+    <app-message></app-message>
+    <div *ngIf="orders" class="row">
+      <div class="col-md-12">
+        <p class="lead font-weight-bold">Your orders</p>
+        <div class="row">
+          <div class="col-6 d-none d-md-block">
+            <p>
+              <small class="text-muted">Order Number</small>
+            </p>
+          </div>
+          <div class="col-6 d-none d-md-block" style="text-align: right;">
+            <p>
+              <small class="text-muted">Total price</small>
+            </p>
+          </div>
+        </div>
+        <hr class="mt-0">
+        <div *ngFor="let order of orders; let i = index" class="product">
+          <a routerLink="/profile/orders/{{ order._id }}">
+            <div class="row">
+              <div class="col-6">
+                <p>{{i+1}}</p>
+              </div>
+              <div class="col-6" style="text-align: right;">
+                <h6 class="font-weight-bold text-danger">{{ order.totalPrice/100 | currency }}</h6>
+              </div>
+            </div>
+          </a>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
