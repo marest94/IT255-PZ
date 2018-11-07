@@ -5,8 +5,8 @@ const aws = require("aws-sdk");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const s3 = new aws.S3({
-  accessKeyId: "AKIAI6OXPSFDAPPJBVIA",
-  secretAccessKey: "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"
+  accessKeyId: process.env.S3_ACCESS_KEY_ID,
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
 });
 
 const checkJWT = require("../middlewares/check-jwt");
@@ -14,7 +14,7 @@ const checkJWT = require("../middlewares/check-jwt");
 var upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "it255-pz",
+    bucket: process.env.S3_BUCKET,
     metadata: function(req, file, cb) {
       cb(null, { fieldName: file.fieldname });
     },

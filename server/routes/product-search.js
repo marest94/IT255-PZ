@@ -1,8 +1,8 @@
 const router = require("express").Router();
 
 const algoliasearch = require("algoliasearch");
-const client = algoliasearch("B5YWWSI8QD", "e1056f026d6b6c2276c8e51d62aa97b6");
-const index = client.initIndex("it255-pz");
+const client = algoliasearch(process.env.ALGOLIA_APP_NAME, process.env.ALGOLIA_KEY);
+const index = client.initIndex(process.env.ALGOLIA_INDEX);
 
 router.get("/", (req, res, next) => {
   if (req.query.query) {
